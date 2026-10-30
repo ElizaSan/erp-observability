@@ -98,6 +98,14 @@ router
       .prefix('sales')
       .as('sales')
       .use(middleware.auth())
+    
+    router
+      .group(() => {
+        router.post('/adjustments', [controllers.Inventory, 'adjust'])
+      })
+      .prefix('inventory')
+      .as('inventory')
+      .use(middleware.auth())
 
 
   })
