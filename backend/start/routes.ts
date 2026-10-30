@@ -86,5 +86,19 @@ router
       .as('purchases')
       .use(middleware.auth())
 
+    router
+      .group(() => {
+        router.get('/', [controllers.Sales, 'index'])
+        router.post('/', [controllers.Sales, 'store'])
+        router.get('/:id', [controllers.Sales, 'show'])
+        router.put('/:id', [controllers.Sales, 'update'])
+        router.delete('/:id', [controllers.Sales, 'destroy'])
+        router.post('/:id/complete', [controllers.Sales, 'complete'])
+      })
+      .prefix('sales')
+      .as('sales')
+      .use(middleware.auth())
+
+
   })
   .prefix('/api/v1')
